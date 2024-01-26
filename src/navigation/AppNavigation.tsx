@@ -14,10 +14,24 @@ export default function drawerStackNavigation() {
       <DrawerStack.Screen
         name="Home"
         component={HomeStackNavigation}
-        options={{title: 'Msigma Infotech'}}
+        options={{
+          headerShown: false,
+        }}
       />
-      <DrawerStack.Screen name="MyCourse" component={MyCourseScreen} />
-      <DrawerStack.Screen name="Account" component={AccountScreen} />
+      <DrawerStack.Screen
+        name="MyCourse"
+        component={MyCourseScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <DrawerStack.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </DrawerStack.Navigator>
   );
 }
@@ -25,9 +39,22 @@ export default function drawerStackNavigation() {
 const StackNav = createNativeStackNavigator();
 export function HomeStackNavigation() {
   return (
-    <StackNav.Navigator screenOptions={{headerShown: false}}>
-      <StackNav.Screen name="HomeScreen" component={HomeScreen} />
-      <StackNav.Screen name="SubjectList" component={SubjectListScreen} />
+    <StackNav.Navigator>
+      <StackNav.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <StackNav.Screen
+        name="SubjectList"
+        component={SubjectListScreen}
+        options={{
+          title: 'Subject Details',
+          headerBackTitle: 'Back',
+        }}
+      />
     </StackNav.Navigator>
   );
 }

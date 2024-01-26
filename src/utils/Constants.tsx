@@ -8,6 +8,9 @@ export default {
   PASSWORD: 'password',
   TOKEN: 'TOKEN',
   IS_LOGIN: 'ISLOGIN',
+  NAME: 'name',
+  ID: 'id',
+  SEM: 'sem',
 
   //colors
   COLOR_BG_MAIN: '#EEEEEE',

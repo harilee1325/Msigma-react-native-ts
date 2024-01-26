@@ -15,6 +15,7 @@ import AppNavigation from './navigation/AppNavigation';
 import {useDispatch, useSelector} from 'react-redux';
 import {userLogin} from './context/userSlice';
 import SplashScreen from './screens/SplashScreen';
+import {userData} from './context/userDataSlice';
 
 export default function Main(): React.FC {
   const isLoggedIn = useSelector((state: any) => state.userReducer.isLoggedIn);
@@ -25,10 +26,17 @@ export default function Main(): React.FC {
     setIsLoading(true);
     (async () => {
       const isLogin = await getItem(Constants.IS_LOGIN);
+      const name = await getItem(Constants.NAME);
+      const token = await getItem(Constants.TOKEN);
+      const id = await getItem(Constants.ID);
+      const sem = await getItem(Constants.SEM);
+
       if (isLogin === 'true') {
         dispatch(userLogin(true));
+        dispatch(userData([name, token, id, sem]));
       } else {
         dispatch(userLogin(false));
+        dispatch(userData(['', '', '', '']));
       }
       setIsLoading(false);
     })();

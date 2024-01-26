@@ -21,7 +21,7 @@ export async function getRequest(url: string): Promise<ContentResponse> {
       statusCode === '200' ? (success = true) : (success = false);
     }
     contentResp = contentResponse.data;
-    console.log('Response is ' + contentResp);
+    console.log(`Response for url ${url} is ${contentResponse}`);
   } catch (error: any) {
     console.log('Error while logging in:', error);
     errorMessage = error.message;
@@ -30,7 +30,9 @@ export async function getRequest(url: string): Promise<ContentResponse> {
   return {success, statusCode, contentResp, errorMessage};
 }
 
-export async function getRequestFeatured(url: string): Promise<ContentResponse> {
+export async function getRequestFeatured(
+  url: string,
+): Promise<ContentResponse> {
   let success: boolean = false;
   let errorMessage: string = '';
   let statusCode: string = '';
@@ -43,7 +45,7 @@ export async function getRequestFeatured(url: string): Promise<ContentResponse> 
       statusCode === '200' ? (success = true) : (success = false);
     }
     contentResp = contentResponse.data;
-    console.log('Response is ' + contentResp);
+    console.log(`Response for url ${url} is ${contentResp}`);
   } catch (error: any) {
     console.log('Error while logging in:', error);
     errorMessage = error.message;

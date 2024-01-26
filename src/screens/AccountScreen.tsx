@@ -13,6 +13,7 @@ import {userLogin} from '../context/userSlice';
 import CustomButton from '../components/ButtonComponent';
 import {userData} from '../context/userDataSlice';
 import Spacer from '../components/Spacer';
+import DrawerHeader from '../components/DrawerHeader';
 
 interface ProfileInterface {
   name: string;
@@ -31,17 +32,20 @@ const AccountScreen: React.FC = () => {
 
   console.log(getItem(Constants.IS_LOGIN));
 
-  const name = useSelector((state: any) => state.userReducer.name);
-  const branch = useSelector((state: any) => state.userReducer.branch);
+  const name = useSelector((state: any) => state.userDataReducer.name);
+  const branch = useSelector((state: any) => state.userDataReducer.sem);
   console.log('name is ' + name);
   return (
     <View style={styles.container}>
-      <View style={styles.headerProfile}>
-        <Text style={styles.mainText}>{name}</Text>
-        <Text style={styles.mainText}>{branch}</Text>
-      </View>
-      <Spacer top={100} bottom={0} left={0} right={0} />
-      <CustomButton status={false} action={handleLogout} text="Logout" />
+      <SafeAreaView>
+        <DrawerHeader title={'Profile'} />
+        <View style={styles.headerProfile}>
+          <Text style={styles.mainText}>{name}</Text>
+          <Text style={styles.mainText}>{branch}</Text>
+        </View>
+        <Spacer top={100} bottom={0} left={0} right={0} />
+        <CustomButton status={false} action={handleLogout} text="Logout" />
+      </SafeAreaView>
     </View>
   );
 };

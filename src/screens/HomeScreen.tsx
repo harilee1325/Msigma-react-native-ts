@@ -1,11 +1,12 @@
-import React, {useState, useRef} from 'react';
-import {useEffect} from 'react';
+import React = require('react');
+import {useState, useEffect} from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import FeaturedList from '../components/FeaturedList';
@@ -13,10 +14,13 @@ import ResultsList from '../components/ResultsList';
 import {getRequest, getRequestFeatured} from '../hooks/ContentApi';
 import Constants from '../utils/Constants';
 import {getItem} from '../utils/Utils';
+import {DrawerActions} from '@react-navigation/native';
+import DrawerHeader from '../components/DrawerHeader';
 
 const HomeScreen: React.FC = () => {
   const [branchList, setBranchList] = useState<any[]>([]);
   const [featureList, setFeaturedList] = useState<any[]>([]);
+  
 
   useEffect(() => {
     const fetchBranches = async () => {
@@ -58,7 +62,13 @@ const HomeScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        backgroundColor={Constants.COLOR_BG_MAIN}
+        barStyle="dark-content"
+      />
+
       <ScrollView>
+        <DrawerHeader title={'Home'} />
         <FeaturedList title={'Featured List'} results={featureList} />
 
         <ResultsList title={'Branches'} results={branchList} />
@@ -70,6 +80,7 @@ const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Constants.BASEURL,
   },
   mainText: {
     fontSize: 16,

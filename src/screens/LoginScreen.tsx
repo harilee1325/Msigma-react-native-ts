@@ -47,21 +47,17 @@ const LoginScreen: React.FC = () => {
       if (success) {
         setStringItem(Constants.USERNAME, email);
         setStringItem(Constants.IS_LOGIN, 'true');
+        setStringItem(Constants.NAME, loginResp.name);
+        setStringItem(Constants.TOKEN, loginResp.token);
+        setStringItem(Constants.ID, loginResp.id);
+        setStringItem(Constants.SEM, loginResp.sem);
 
-        dispatch(
-          userLogin([
-            true,
-            loginResp.name,
-            loginResp.token,
-            loginResp.college,
-            loginResp.sem,
-          ]),
-        );
+        dispatch(userLogin([true]));
         dispatch(
           userData([
             loginResp.name,
             loginResp.token,
-            loginResp.college,
+            loginResp.id,
             loginResp.sem,
           ]),
         );
@@ -118,7 +114,7 @@ const LoginScreen: React.FC = () => {
       </View>
 
       {/* Login Button */}
-      <CustomButton status={loading} action={handleLogin} text='Login' />
+      <CustomButton status={loading} action={handleLogin} text="Login" />
 
       {/* Sign Up Text */}
       <TouchableOpacity onPress={handleSignUp}>
